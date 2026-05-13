@@ -1,6 +1,4 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-
 export interface Props {
   title?: string;
   description?: string;
@@ -21,7 +19,6 @@ const {
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <ViewTransitions />
     <style is:inline>
       /* Critical CSS for above-the-fold */
       html { background-color: #0a0a0a; }
