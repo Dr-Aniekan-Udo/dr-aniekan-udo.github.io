@@ -28,7 +28,7 @@ const { title, category, excerpt, thumbnail, githubUrl, stars, language, feature
   )}
   
   <!-- Thumbnail -->
-  <a href={`/projects/${project.slug}`} class="block aspect-video bg-dark-elevated overflow-hidden">
+  <a href={`/projects/${project.slug}/`} class="block aspect-video bg-dark-elevated overflow-hidden">
     <img 
       src={thumbnail || '/default-thumbnail.png'} 
       alt={title}
@@ -46,7 +46,7 @@ const { title, category, excerpt, thumbnail, githubUrl, stars, language, feature
     </div>
     
     <h3 class="text-lg font-semibold text-text-primary mb-2 group-hover:text-amber transition-colors">
-      <a href={`/projects/${project.slug}`}>{title}</a>
+      <a href={`/projects/${project.slug}/`}>{title}</a>
     </h3>
     
     <p class="text-sm text-text-secondary line-clamp-2 mb-4">

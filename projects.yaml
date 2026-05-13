@@ -55,10 +55,6 @@ projects:
   - repo: Dr-Aniekan-Udo/full_ml_project
     category: "Machine Learning"
     priority: 8
-    
-  - repo: Dr-Aniekan-Udo/spark-oyo
-    category: "Machine Learning"
-    priority: 9
 
   # Data Science
   - repo: Dr-Aniekan-Udo/skilharvest_ml_cancer_prediction
