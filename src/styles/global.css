@@ -53,11 +53,16 @@
   }
 }
 
-/* Scroll-triggered animation helper - only when JS is enabled */
-.js-animations .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+/* Scroll-triggered animation helper - content always visible, animates when scrolled */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.js-animations .reveal {
+  opacity: 0.95;
+  transform: translateY(12px);
 }
 
 .js-animations .reveal.visible {
@@ -65,10 +70,16 @@
   transform: translateY(0);
 }
 
-/* Stagger children - only when JS is enabled */
+/* Stagger children - always visible */
+.stagger-children > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
 .js-animations .stagger-children > * {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 0.95;
+  transform: translateY(8px);
 }
 
 .js-animations .stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; }
@@ -80,7 +91,6 @@
 .js-animations .stagger-children.visible > * {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 /* Markdown content styling */
