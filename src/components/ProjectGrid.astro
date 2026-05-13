@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const allProjects = await getCollection('projects');
+const categories = [...new Set(allProjects.map(p => p.data.category))].sort();
+
+// Sort by priority
+const projects = allProjects.sort((a, b) => a.data.priority - b.data.priority);
+---
+
+<section id="projects" class="py-24 section-padding">
+  <div class="content-max">
+    <div class="reveal mb-12">
+      <p class="text-amber font-mono text-sm tracking-wider mb-2">Portfolio</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Selected Projects</h2>
+      <p class="text-text-secondary max-w-2xl">
+        A curated selection of my work across data science, machine learning, 
+        AI agents, and fullstack engineering.
+      </p>
+    </div>
+    
+    <!-- Category filters -->
+    <div class="reveal mb-8 flex flex-wrap gap-2" data-filter-container>
+      <button 
+        class="filter-btn active px-4 py-2 text-sm rounded-lg border border-amber bg-amber text-dark font-medium transition-all"
+        data-filter="all"
+      >
+        All
+      </button>
+      {categories.map((cat) => (
+        <button 
+          class="filter-btn px-4 py-2 text-sm rounded-lg border border-border text-text-secondary hover:border-amber hover:text-amber transition-all"
+          data-filter={cat}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+    
+    <!-- Projects grid -->
+    <div class="stagger-children grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+      {projects.map((project) => (
+        <div class="project-item" data-category={project.data.category}>
+          <ProjectCard project={{ slug: project.slug, data: project.data }} />
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        // Update active state
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-amber', 'text-dark', 'border-amber', 'font-medium');
+          b.classList.add('text-text-secondary', 'border-border');
+        });
+        btn.classList.remove('text-text-secondary', 'border-border');
+        btn.classList.add('bg-amber', 'text-dark', 'border-amber', 'font-medium');
+        
+        // Filter items
+        projectItems.forEach(item => {
+          const category = item.dataset.category;
+          if (filter === 'all' || category === filter) {
+            item.style.display = 'block';
+            item.style.animation = 'fadeIn 0.4s ease-out forwards';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</section>

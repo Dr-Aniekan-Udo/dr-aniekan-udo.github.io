@@ -1,0 +1,37 @@
+---
+const skills = {
+  "Data & ML": ["Python", "Pandas", "NumPy", "Scikit-learn", "PyTorch", "TensorFlow", "Jupyter"],
+  "AI & Agents": ["LangGraph", "LangChain", "OpenAI", "MCP", "RAG", "Docling", "Chroma"],
+  "Backend": ["Node.js", "TypeScript", "Go", "Python", "PostgreSQL", "MongoDB", "REST APIs"],
+  "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Streamlit", "Reflex"],
+  "DevOps & MLOps": ["Docker", "GitHub Actions", "Linux", "AWS", "CI/CD", "System Design"],
+};
+---
+
+<section id="skills" class="py-24 section-padding bg-dark-surface/30">
+  <div class="content-max">
+    <div class="reveal mb-12">
+      <p class="text-amber font-mono text-sm tracking-wider mb-2">Capabilities</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Skills & Technologies</h2>
+      <p class="text-text-secondary max-w-2xl">
+        A diverse toolkit built across data science, machine learning, AI engineering, 
+        and fullstack development.
+      </p>
+    </div>
+    
+    <div class="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {Object.entries(skills).map(([category, items]) => (
+        <div class="bg-dark-surface border border-border rounded-xl p-6 hover:border-amber/30 transition-colors">
+          <h3 class="text-lg font-semibold text-text-primary mb-4">{category}</h3>
+          <div class="flex flex-wrap gap-2">
+            {items.map((skill) => (
+              <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary hover:border-amber/50 hover:text-amber transition-colors cursor-default">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

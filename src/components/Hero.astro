@@ -1,0 +1,67 @@
+---
+const taglineWords = ["Data", "AI", "Fullstack", "MLOps", "Automation"];
+---
+
+<section class="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
+  <!-- Subtle background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-dark via-dark to-dark-surface opacity-50"></div>
+  <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-amber/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-amber/3 rounded-full blur-3xl"></div>
+  
+  <div class="content-max relative z-10 text-center">
+    <div class="reveal">
+      <p class="text-amber font-mono text-sm tracking-wider mb-4">
+        Hello, I'm
+      </p>
+    </div>
+    
+    <div class="reveal" style="transition-delay: 100ms;">
+      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-text-primary mb-6">
+        Aniekan Udo
+      </h1>
+    </div>
+    
+    <div class="reveal" style="transition-delay: 200ms;">
+      <p class="text-xl sm:text-2xl text-text-secondary mb-2">
+        Software Engineer
+      </p>
+    </div>
+    
+    <div class="reveal" style="transition-delay: 300ms;">
+      <div class="flex items-center justify-center gap-3 text-text-muted flex-wrap">
+        {taglineWords.map((word, i) => (
+          <>
+            <span class="text-amber">{word}</span>
+            {i < taglineWords.length - 1 && (
+              <span class="text-border">·</span>
+            )}
+          </>
+        ))}
+      </div>
+    </div>
+    
+    <div class="reveal mt-10" style="transition-delay: 400ms;">
+      <div class="flex items-center justify-center gap-4">
+        <a 
+          href="#projects" 
+          class="px-6 py-3 bg-amber text-dark font-medium rounded-lg hover:bg-amber-hover transition-colors duration-200"
+        >
+          View Projects
+        </a>
+        <a 
+          href="#contact" 
+          class="px-6 py-3 border border-border text-text-secondary rounded-lg hover:border-amber hover:text-amber transition-colors duration-200"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>

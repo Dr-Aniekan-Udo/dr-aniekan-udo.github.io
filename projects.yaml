@@ -1,0 +1,85 @@
+profile:
+  name: "Aniekan Udo"
+  title: "Software Engineer"
+  tagline: "Data · AI · Fullstack · MLOps · Automation"
+  bio: |
+    I'm a software engineer with a unique background in medicine, now building 
+    data-driven systems, AI applications, and scalable fullstack solutions. 
+    Currently training at ALX/Holberton, I specialize in turning complex data 
+    into production-grade software — from machine learning pipelines to 
+    agentic AI systems and fullstack web applications.
+
+social:
+  github: "Dr-Aniekan-Udo"
+  linkedin: "aniekan-udo-762429208"
+  twitter: "anigram3"
+  email: "aniekanetimudo@gmail.com"
+
+projects:
+  # Fullstack & Engineering
+  - repo: Dr-Aniekan-Udo/gmc-analyst
+    category: "Fullstack"
+    featured: true
+    priority: 1
+    
+  - repo: Dr-Aniekan-Udo/social-automation
+    category: "Fullstack"
+    featured: true
+    priority: 2
+
+  # AI & Agentic Systems
+  - repo: Dr-Aniekan-Udo/langgraph-agent-mcp
+    category: "AI & Agents"
+    featured: true
+    priority: 3
+    
+  - repo: Dr-Aniekan-Udo/Gemini-Agent-MCP
+    category: "AI & Agents"
+    priority: 4
+
+  # RAG & Document AI
+  - repo: Dr-Aniekan-Udo/Reflex-based-RAG-app-with-Docling
+    category: "AI & Agents"
+    priority: 5
+    
+  - repo: Dr-Aniekan-Udo/Streamlit-based-RAG-app-with-Docling
+    category: "AI & Agents"
+    priority: 6
+
+  # MLOps & Tools
+  - repo: Dr-Aniekan-Udo/Notetaker-MCP-Server
+    category: "MLOps & Tools"
+    priority: 7
+
+  # Machine Learning
+  - repo: Dr-Aniekan-Udo/full_ml_project
+    category: "Machine Learning"
+    priority: 8
+    
+  - repo: Dr-Aniekan-Udo/spark-oyo
+    category: "Machine Learning"
+    priority: 9
+
+  # Data Science
+  - repo: Dr-Aniekan-Udo/skilharvest_ml_cancer_prediction
+    category: "Data Science"
+    priority: 10
+    
+  - repo: Dr-Aniekan-Udo/skilharvest_stackoverflow_EDA
+    category: "Data Science"
+    priority: 11
+    
+  - repo: Dr-Aniekan-Udo/Adidas_store_sales
+    category: "Data Science"
+    priority: 12
+    
+  - repo: Dr-Aniekan-Udo/Data_cleaning_with_Pandas
+    category: "Data Science"
+    priority: 13
+
+categories:
+  - "Fullstack"
+  - "AI & Agents"
+  - "MLOps & Tools"
+  - "Machine Learning"
+  - "Data Science"

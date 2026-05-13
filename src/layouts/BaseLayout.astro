@@ -1,0 +1,52 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'Aniekan Udo — Software Engineer', 
+  description = 'Software Engineer specializing in Data, AI, Fullstack, MLOps, and Automation.' 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <ViewTransitions />
+    <style is:inline>
+      /* Critical CSS for above-the-fold */
+      html { background-color: #0a0a0a; }
+      body { margin: 0; opacity: 0; animation: bodyFade 0.3s ease-out forwards; }
+      @keyframes bodyFade { to { opacity: 1; } }
+    </style>
+  </head>
+  <body class="min-h-screen bg-dark text-text-primary font-sans antialiased">
+    <slot />
+    <script>
+      // Intersection Observer for scroll-triggered animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('.reveal, .stagger-children').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
