@@ -2,12 +2,12 @@
 title: "Skilharvest Stackoverflow Eda"
 repo: "Dr-Aniekan-Udo/skilharvest_stackoverflow_EDA"
 category: "Data Science"
-description: "A repository for Streamlit EDA dashboard build on Stackoverflow developer survey 2023 data"
-excerpt: "A repository for Streamlit EDA dashboard build on Stackoverflow developer survey 2023 data"
+description: "No README available."
+excerpt: "No README available."
 thumbnail: "/default-thumbnail.svg"
 githubUrl: "https://github.com/Dr-Aniekan-Udo/skilharvest_stackoverflow_EDA"
 stars: 0
-language: "Jupyter Notebook"
+language: ""
 featured: false
 priority: 11
 tags: []
@@ -15,5 +15,4 @@ tags: []
 
 # Skilharvest Stackoverflow Eda
 
-# skilharvest_stackoverflow_EDA
-A repository for Streamlit EDA dashboard build on Stackoverflow developer survey 2023 data
+No README content available.

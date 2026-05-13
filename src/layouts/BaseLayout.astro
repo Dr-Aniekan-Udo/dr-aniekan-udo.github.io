@@ -25,13 +25,17 @@ const {
     <style is:inline>
       /* Critical CSS for above-the-fold */
       html { background-color: #0a0a0a; }
-      body { margin: 0; opacity: 0; animation: bodyFade 0.3s ease-out forwards; }
-      @keyframes bodyFade { to { opacity: 1; } }
+      body { margin: 0; }
+      /* Ensure content is visible even before JS loads */
+      .reveal, .stagger-children > * { opacity: 1; }
     </style>
   </head>
   <body class="min-h-screen bg-dark text-text-primary font-sans antialiased">
     <slot />
     <script>
+      // Enable animations only after JS loads
+      document.documentElement.classList.add('js-animations');
+      
       // Intersection Observer for scroll-triggered animations
       const observer = new IntersectionObserver(
         (entries) => {
