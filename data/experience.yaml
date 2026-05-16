@@ -19,6 +19,16 @@ experience:
     photoAlt: "Highland College AI project"
     priority: 2
 
+  - role: "Board Member"
+    org: "FAMSA Headquarters (Federation of African Medical Students' Association)"
+    period: "Sep 2023 – Dec 2024"
+    description: "Served two tenures contributing to the planning and execution of FAMSA General Assemblies, coordinating outreach programs across African medical schools, and handling administrative duties for the federation. Developed strong leadership, organizational, and cross-cultural collaboration skills."
+    tags: ["Leadership", "Healthcare Administration", "Community Outreach", "Event Planning"]
+    featured: false
+    photo: "/experience/famsa.jpg"
+    photoAlt: "FAMSA Headquarters"
+    priority: 3
+
   - role: "Data Scientist Intern"
     org: "Skilharvest"
     period: "Jan 2024 – May 2024"
@@ -27,7 +37,7 @@ experience:
     featured: false
     photo: "/experience/skilharvest.jpg"
     photoAlt: "Skilharvest data team"
-    priority: 3
+    priority: 4
 
   - role: "Green Skill Trainee"
     org: "INCO Academy (LinkedIn & Microsoft backed)"
@@ -37,7 +47,7 @@ experience:
     featured: false
     photo: "/experience/inco-academy.jpg"
     photoAlt: "INCO Academy green skills program"
-    priority: 4
+    priority: 5
 
   - role: "Aspire Leadership Candidate"
     org: "Aspire Institute (Harvard Business School faculty)"
@@ -47,7 +57,7 @@ experience:
     featured: false
     photo: "/experience/aspire-institute.jpg"
     photoAlt: "Aspire Institute leadership program"
-    priority: 5
+    priority: 6
 
   - role: "McKinsey Forward Program Candidate"
     org: "McKinsey & Company"
@@ -57,4 +67,4 @@ experience:
     featured: false
     photo: "/experience/mckinsey-forward.jpg"
     photoAlt: "McKinsey Forward program"
-    priority: 6
+    priority: 7

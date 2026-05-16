@@ -18,6 +18,26 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const researchCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    authors: z.string().optional(),
+    venue: z.string().optional(),
+    arxiv: z.string().optional(),
+    date: z.string().optional(),
+    abstract: z.string().optional(),
+    methodology: z.array(z.string()).default([]),
+    conclusion: z.string().optional(),
+    thumbnail: z.string().default('/default-thumbnail.svg'),
+    repo: z.string().optional(),
+    featured: z.boolean().default(false),
+    priority: z.number().default(99),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
 export const collections = {
   projects: projectsCollection,
+  research: researchCollection,
 };

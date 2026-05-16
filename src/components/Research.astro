@@ -1,4 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
+
+const researchPapers = await getCollection('research');
+researchPapers.sort((a, b) => (a.data.priority || 99) - (b.data.priority || 99));
+
+const featuredPaper = researchPapers.find(p => p.data.featured) || researchPapers[0];
 ---
 
 <section id="research" class="py-24 section-padding bg-dark-surface/30">
@@ -12,100 +18,115 @@
       </p>
     </div>
 
-    <div class="reveal">
-      <div class="bg-dark-surface border border-border rounded-2xl overflow-hidden hover:border-amber/30 transition-all duration-300">
-        <div class="p-8 md:p-10">
-          <div class="flex items-start gap-4 mb-6">
-            <div class="w-12 h-12 bg-amber/10 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-              </svg>
+    {featuredPaper && (
+      <div class="reveal">
+        <div class="bg-dark-surface border border-border rounded-2xl overflow-hidden hover:border-amber/30 transition-all duration-300">
+          <div class="p-8 md:p-10">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-amber/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
+              <div>
+                {featuredPaper.data.venue && (
+                  <span class="text-xs font-mono text-amber">{featuredPaper.data.venue}{featuredPaper.data.date && ` · ${featuredPaper.data.date}`}</span>
+                )}
+                <h3 class="text-xl md:text-2xl font-bold text-text-primary mt-1 leading-tight">
+                  {featuredPaper.data.title}
+                </h3>
+                {featuredPaper.data.authors && (
+                  <p class="text-sm text-text-muted mt-2">
+                    {featuredPaper.data.authors}
+                  </p>
+                )}
+              </div>
             </div>
-            <div>
-              <span class="text-xs font-mono text-amber">Medical AI · Computer Vision · 2024</span>
-              <h3 class="text-xl md:text-2xl font-bold text-text-primary mt-1 leading-tight">
-                Domain-Adaptive Transformer for Data-Efficient Glioma Segmentation in Sub-Saharan MRI
-              </h3>
-              <p class="text-sm text-text-muted mt-2">
-                Ilerioluwakiiye Abolade, <strong>Aniekan Udo</strong>, Augustine Ojo, Abdulbasit Oyetunji, Hammed Ajigbotosho, Aondana Iorumbur, Confidence Raymond, Maruf Adewole
+
+            {featuredPaper.data.abstract && (
+              <p class="text-text-secondary leading-relaxed mb-6 max-w-3xl">
+                {featuredPaper.data.abstract}
               </p>
-            </div>
-          </div>
+            )}
 
-          <p class="text-text-secondary leading-relaxed mb-6 max-w-3xl">
-            Glioma segmentation is critical for diagnosis and treatment planning, yet remains challenging in Sub-Saharan Africa due to limited MRI infrastructure and heterogeneous acquisition protocols that induce severe domain shift. We propose <strong>SegFormer3D-plus</strong>, a radiomics-guided transformer architecture designed for robust segmentation under domain variability.
-          </p>
+            {featuredPaper.data.methodology && featuredPaper.data.methodology.length > 0 && (
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-sm text-text-secondary">
+                {featuredPaper.data.methodology.map((step, i) => (
+                  <div class="flex items-start gap-2">
+                    <span class="text-amber mt-0.5">{String(i + 1).padStart(2, '0')}</span>
+                    <span>{step}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-sm text-text-secondary">
-            <div class="flex items-start gap-2">
-              <span class="text-amber mt-0.5">01</span>
-              <span>Histogram matching for intensity harmonization across scanners</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-amber mt-0.5">02</span>
-              <span>Radiomic feature extraction with PCA-reduced k-means for domain-aware stratified sampling</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-amber mt-0.5">03</span>
-              <span>Dual-pathway encoder with frequency-aware feature extraction and spatial-channel attention</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <span class="text-amber mt-0.5">04</span>
-              <span>Composite Dice-Cross-Entropy loss for boundary refinement</span>
-            </div>
-          </div>
+            {featuredPaper.data.conclusion && (
+              <p class="text-text-secondary leading-relaxed mb-6 max-w-3xl">
+                {featuredPaper.data.conclusion}
+              </p>
+            )}
 
-          <p class="text-text-secondary leading-relaxed mb-6 max-w-3xl">
-            Pretrained on BraTS 2023 and fine-tuned on BraTS-Africa data, SegFormer3D-plus demonstrates improved tumor subregion delineation and boundary localization across heterogeneous African clinical scans, highlighting the value of radiomics-guided domain adaptation for resource-limited settings.
-          </p>
+            {featuredPaper.data.tags && featuredPaper.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-3 mb-8">
+                {featuredPaper.data.tags.map((tag) => (
+                  <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
 
-          <div class="flex flex-wrap gap-3 mb-8">
-            <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
-              PyTorch
-            </span>
-            <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
-              Medical AI
-            </span>
-            <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
-              Computer Vision
-            </span>
-            <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
-              SegFormer3D-plus
-            </span>
-            <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
-              Radiomics
-            </span>
-            <span class="px-3 py-1.5 text-sm bg-dark-elevated border border-border rounded-lg text-text-secondary">
-              Domain Adaptation
-            </span>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a 
-              href="https://arxiv.org/abs/2511.02928"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-amber text-dark font-medium rounded-lg hover:bg-amber-hover transition-colors"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm-1 5v4H8v2h3v4h2v-4h3v-2h-3V7h-2z"/>
-              </svg>
-              Read Paper on arXiv
-            </a>
-            <a 
-              href="https://github.com/Dr-Aniekan-Udo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary rounded-lg hover:border-amber hover:text-amber transition-colors"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              View Code
-            </a>
+            <div class="flex flex-col sm:flex-row gap-3">
+              {featuredPaper.data.arxiv && (
+                <a 
+                  href={`https://arxiv.org/abs/${featuredPaper.data.arxiv}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-amber text-dark font-medium rounded-lg hover:bg-amber-hover transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm-1 5v4H8v2h3v4h2v-4h3v-2h-3V7h-2z"/>
+                  </svg>
+                  Read Paper on arXiv
+                </a>
+              )}
+              {featuredPaper.data.repo && (
+                <a 
+                  href={`https://github.com/${featuredPaper.data.repo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 px-6 py-3 border border-border text-text-secondary rounded-lg hover:border-amber hover:text-amber transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  View Code
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )}
+
+    {researchPapers.length > 1 && (
+      <div class="mt-12">
+        <h3 class="text-xl font-semibold text-text-primary mb-6">More Research</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {researchPapers.filter(p => p.id !== featuredPaper?.id).map((paper) => (
+            <div class="bg-dark-surface border border-border rounded-xl p-6 hover:border-amber/30 transition-colors">
+              <span class="text-xs font-mono text-amber">{paper.data.venue}</span>
+              <h4 class="text-lg font-semibold text-text-primary mt-1 mb-2">{paper.data.title}</h4>
+              <p class="text-sm text-text-secondary line-clamp-3 mb-4">{paper.data.abstract}</p>
+              {paper.data.arxiv && (
+                <a href={`https://arxiv.org/abs/${paper.data.arxiv}`} target="_blank" rel="noopener noreferrer" class="text-sm text-amber hover:text-amber-hover transition-colors">
+                  Read on arXiv →
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 </section>

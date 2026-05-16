@@ -2,18 +2,21 @@ education:
   - degree: "Bachelor of Computer Science"
     school: "University of the People"
     period: "Sep 2025 – Present"
+    description: "Comprehensive computer science program covering software engineering, algorithms, data structures, systems programming, database management, web development, and AI/ML fundamentals. Building strong theoretical and practical foundations in computing alongside medical training."
     logo: "/education/uopeople-logo.png"
     priority: 1
 
   - degree: "Bachelor of Medicine and Bachelor of Surgery (MB;BS)"
     school: "University of Ibadan"
     period: "Apr 2018 – Present"
+    description: "Rigorous medical training in clinical diagnosis, patient management, and evidence-based medicine. Developed systematic approach to disease management through history-taking, physical examination, investigations, and treatment planning. Actively participated in medical research, sports, and student leadership initiatives."
     logo: "/education/ui-logo.png"
     priority: 2
 
   - degree: "AI Engineering Certificate"
     school: "SPARK Academy"
     period: "Jan 2025 – Aug 2025"
+    description: "Intensive medical AI program focused on deep learning, computer vision, and medical image segmentation. Completed research project on Glioma segmentation using domain adaptive transformers, leading to publication at WiML Workshop, NeurIPS 2025."
     logo: "/education/spark-academy-logo.png"
     priority: 3
 
@@ -21,12 +24,13 @@ education:
     school: "ALX Africa"
     period: "Jun 2022 – Dec 2023"
     status: "Incomplete"
-    description: "Intensive full-stack software engineering program. Learned Linux, Bash, C Programming, Python, test-driven development, and professional engineering skills. Program discontinued by ALX. Slogan: 'Do Hard Things'"
+    description: "Intensive full-stack software engineering program built on the 'Do Hard Things' philosophy. Mastered Linux, Bash, C Programming, Python, test-driven development, version control, and professional software engineering practices. Program discontinued by ALX, but skills gained remain foundational to all technical work."
     logo: "/education/alx-logo.png"
     priority: 4
 
-  - degree: "Google Data Analyst Certificate"
+  - degree: "Google Data Analytics Certificate"
     school: "Coursera"
     period: "Feb 2024"
+    description: "Comprehensive data analytics training covering data collection, cleaning, analysis, and visualization. Proficient in SQL, R, spreadsheets, Tableau, and statistical analysis. Learned to transform raw data into actionable insights and compelling data stories for business decision-making."
     logo: "/education/coursera-logo.png"
     priority: 5

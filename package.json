@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync": ".venv\\Scripts\\python.exe scripts/sync-projects.py",
-    "sync:content": ".venv\\Scripts\\python.exe scripts/sync-content.py"
+    "sync:content": ".venv\\Scripts\\python.exe scripts/sync-content.py",
+    "sync:research": ".venv\\Scripts\\python.exe scripts/sync-research.py"
   },
   "dependencies": {
     "astro": "^5.0.0",
