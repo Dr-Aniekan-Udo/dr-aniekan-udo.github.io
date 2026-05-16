@@ -20,20 +20,20 @@ const hasPhoto = (entry: typeof experience[0]) => entry.photo && entry.photo.len
       <h3 class="text-xl font-semibold text-text-primary mb-8">Professional Experience</h3>
       <div class="relative">
         <!-- Timeline line -->
-        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px"></div>
+        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-px"></div>
         
         {experience.map((exp, i) => {
           const isEven = i % 2 === 0;
           const hasImg = hasPhoto(exp);
           
           return (
-            <div class={`reveal relative mb-8 md:mb-12`} style={`transition-delay: ${i * 100}ms;`}>
+            <div class="reveal relative mb-8 md:mb-16" style={`transition-delay: ${i * 100}ms;`}>
               
-              {/* Desktop: Two column layout */}
-              <div class="hidden md:grid md:grid-cols-2 md:gap-8 items-center">
+              {/* Desktop Layout: True alternating columns */}
+              <div class="hidden md:grid md:grid-cols-2 md:gap-12 md:items-center">
                 
-                {/* Left Column */}
-                <div class={`relative ${isEven ? 'order-1' : 'order-2'}`}>
+                {/* LEFT COLUMN */}
+                <div class="relative">
                   {isEven ? (
                     /* Even entries: Photo on LEFT */
                     hasImg ? (
@@ -46,10 +46,22 @@ const hasPhoto = (entry: typeof experience[0]) => entry.photo && entry.photo.len
                           loading="lazy"
                         />
                       </div>
-                    ) : null
+                    ) : (
+                      /* Placeholder for even entries without photo */
+                      <div class="relative w-full aspect-[4/3] rounded-xl border border-border bg-dark-surface flex items-center justify-center overflow-hidden">
+                        <svg class="w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="400" height="300" fill="#141414"/>
+                          <circle cx="200" cy="120" r="40" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="2" fill="none"/>
+                          <path d="M185 120 L195 130 L215 110" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                          <text x="200" y="190" text-anchor="middle" fill="#f59e0b" fill-opacity="0.6" font-family="'Inter', system-ui, sans-serif" font-size="16" font-weight="600">{exp.org.split('(')[0].trim()}</text>
+                          <text x="200" y="220" text-anchor="middle" fill="#737373" font-family="'Fira Code', monospace" font-size="12">Photo coming soon</text>
+                          <rect x="20" y="20" width="360" height="260" rx="12" stroke="#262626" stroke-width="1" fill="none"/>
+                        </svg>
+                      </div>
+                    )
                   ) : (
                     /* Odd entries: Description on LEFT */
-                    <div class="text-right pr-8">
+                    <div class="text-right pr-4">
                       <span class="text-xs font-mono text-amber">{exp.period}</span>
                       <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
                       <p class="text-sm text-text-muted mb-2">{exp.org}</p>
@@ -65,14 +77,14 @@ const hasPhoto = (entry: typeof experience[0]) => entry.photo && entry.photo.len
                   )}
                 </div>
                 
-                {/* Timeline dot - centered */}
-                <div class="absolute left-1/2 top-2 -translate-x-1/2 w-3 h-3 rounded-full border-2 z-10 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'}"></div>
+                {/* Timeline dot - centered between columns */}
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 z-10 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'}"></div>
                 
-                {/* Right Column */}
-                <div class={`relative ${isEven ? 'order-2' : 'order-1'}`}>
+                {/* RIGHT COLUMN */}
+                <div class="relative">
                   {isEven ? (
                     /* Even entries: Description on RIGHT */
-                    <div class="pl-8">
+                    <div class="pl-4">
                       <span class="text-xs font-mono text-amber">{exp.period}</span>
                       <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
                       <p class="text-sm text-text-muted mb-2">{exp.org}</p>
@@ -97,12 +109,24 @@ const hasPhoto = (entry: typeof experience[0]) => entry.photo && entry.photo.len
                           loading="lazy"
                         />
                       </div>
-                    ) : null
+                    ) : (
+                      /* Placeholder for odd entries without photo */
+                      <div class="relative w-full aspect-[4/3] rounded-xl border border-border bg-dark-surface flex items-center justify-center overflow-hidden">
+                        <svg class="w-full h-full" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="400" height="300" fill="#141414"/>
+                          <circle cx="200" cy="120" r="40" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="2" fill="none"/>
+                          <path d="M185 120 L195 130 L215 110" stroke="#f59e0b" stroke-opacity="0.3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                          <text x="200" y="190" text-anchor="middle" fill="#f59e0b" fill-opacity="0.6" font-family="'Inter', system-ui, sans-serif" font-size="16" font-weight="600">{exp.org.split('(')[0].trim()}</text>
+                          <text x="200" y="220" text-anchor="middle" fill="#737373" font-family="'Fira Code', monospace" font-size="12">Photo coming soon</text>
+                          <rect x="20" y="20" width="360" height="260" rx="12" stroke="#262626" stroke-width="1" fill="none"/>
+                        </svg>
+                      </div>
+                    )
                   )}
                 </div>
               </div>
               
-              {/* Mobile: Single column */}
+              {/* Mobile: Single column, always description first then photo */}
               <div class="md:hidden">
                 <div class="relative pl-6">
                   <div class={`absolute top-2 left-0 w-3 h-3 rounded-full border-2 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'} -translate-x-1.5`}></div>
