@@ -27,63 +27,98 @@ const hasPhoto = (entry: typeof experience[0]) => entry.photo && entry.photo.len
           const hasImg = hasPhoto(exp);
           
           return (
-            <div class={`reveal relative mb-8 md:mb-12 ${hasImg ? '' : (isEven ? 'md:pr-[50%]' : 'md:pl-[50%]')}`} style={`transition-delay: ${i * 100}ms;`}>
-              <div class={`relative ${isEven ? 'md:text-right' : 'md:text-left'} ${hasImg ? 'md:grid md:grid-cols-2 md:gap-8' : ''}`}>
+            <div class={`reveal relative mb-8 md:mb-12`} style={`transition-delay: ${i * 100}ms;`}>
+              
+              {/* Desktop: Two column layout */}
+              <div class="hidden md:grid md:grid-cols-2 md:gap-8 items-center">
                 
-                {/* Photo for even entries - shown on right */}
-                {hasImg && isEven && (
-                  <div class="hidden md:block order-2">
-                    <div class="relative group">
-                      <div class="absolute -inset-1 bg-gradient-to-br from-amber/20 to-transparent rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                      <img 
-                        src={exp.photo} 
-                        alt={exp.photoAlt || exp.org}
-                        class="relative w-full aspect-[4/3] object-cover rounded-xl border border-border shadow-lg group-hover:border-amber/30 transition-colors"
-                        loading="lazy"
-                      />
+                {/* Left Column */}
+                <div class={`relative ${isEven ? 'order-1' : 'order-2'}`}>
+                  {isEven ? (
+                    /* Even entries: Photo on LEFT */
+                    hasImg ? (
+                      <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-br from-amber/20 to-transparent rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <img 
+                          src={exp.photo} 
+                          alt={exp.photoAlt || exp.org}
+                          class="relative w-full aspect-[4/3] object-cover rounded-xl border border-border shadow-lg group-hover:border-amber/30 transition-colors"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : null
+                  ) : (
+                    /* Odd entries: Description on LEFT */
+                    <div class="text-right pr-8">
+                      <span class="text-xs font-mono text-amber">{exp.period}</span>
+                      <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
+                      <p class="text-sm text-text-muted mb-2">{exp.org}</p>
+                      <p class="text-sm text-text-secondary leading-relaxed mb-3">{exp.description}</p>
+                      <div class="flex flex-wrap gap-1.5 justify-end">
+                        {exp.tags.map((tag) => (
+                          <span class="px-2 py-0.5 text-xs bg-dark-elevated border border-border rounded text-text-muted">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-                
-                {/* Content */}
-                <div class={`${hasImg ? 'order-1' : ''} ${isEven && !hasImg ? 'md:pr-8' : !isEven && !hasImg ? 'md:pl-8' : ''}`}>
-                  {/* Timeline dot */}
-                  <div class={`absolute top-2 w-3 h-3 rounded-full border-2 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'} ${isEven ? 'md:right-0 md:translate-x-1.5' : 'md:left-0 md:-translate-x-1.5'} left-0 -translate-x-1.5 md:translate-x-0`}></div>
-                  
-                  <div class="pl-6 md:pl-0">
-                    <span class="text-xs font-mono text-amber">{exp.period}</span>
-                    <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
-                    <p class="text-sm text-text-muted mb-2">{exp.org}</p>
-                    <p class="text-sm text-text-secondary leading-relaxed mb-3">{exp.description}</p>
-                    <div class="flex flex-wrap gap-1.5">
-                      {exp.tags.map((tag) => (
-                        <span class="px-2 py-0.5 text-xs bg-dark-elevated border border-border rounded text-text-muted">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  )}
                 </div>
                 
-                {/* Photo for odd entries - shown on left */}
-                {hasImg && !isEven && (
-                  <div class="hidden md:block order-1">
-                    <div class="relative group">
-                      <div class="absolute -inset-1 bg-gradient-to-br from-amber/20 to-transparent rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                      <img 
-                        src={exp.photo} 
-                        alt={exp.photoAlt || exp.org}
-                        class="relative w-full aspect-[4/3] object-cover rounded-xl border border-border shadow-lg group-hover:border-amber/30 transition-colors"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
-                )}
+                {/* Timeline dot - centered */}
+                <div class="absolute left-1/2 top-2 -translate-x-1/2 w-3 h-3 rounded-full border-2 z-10 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'}"></div>
                 
-                {/* Mobile photo - shown below content */}
-                {hasImg && (
-                  <div class="md:hidden mt-4 pl-6">
-                    <div class="relative group">
+                {/* Right Column */}
+                <div class={`relative ${isEven ? 'order-2' : 'order-1'}`}>
+                  {isEven ? (
+                    /* Even entries: Description on RIGHT */
+                    <div class="pl-8">
+                      <span class="text-xs font-mono text-amber">{exp.period}</span>
+                      <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
+                      <p class="text-sm text-text-muted mb-2">{exp.org}</p>
+                      <p class="text-sm text-text-secondary leading-relaxed mb-3">{exp.description}</p>
+                      <div class="flex flex-wrap gap-1.5">
+                        {exp.tags.map((tag) => (
+                          <span class="px-2 py-0.5 text-xs bg-dark-elevated border border-border rounded text-text-muted">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    /* Odd entries: Photo on RIGHT */
+                    hasImg ? (
+                      <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-br from-amber/20 to-transparent rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <img 
+                          src={exp.photo} 
+                          alt={exp.photoAlt || exp.org}
+                          class="relative w-full aspect-[4/3] object-cover rounded-xl border border-border shadow-lg group-hover:border-amber/30 transition-colors"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : null
+                  )}
+                </div>
+              </div>
+              
+              {/* Mobile: Single column */}
+              <div class="md:hidden">
+                <div class="relative pl-6">
+                  <div class={`absolute top-2 left-0 w-3 h-3 rounded-full border-2 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'} -translate-x-1.5`}></div>
+                  <span class="text-xs font-mono text-amber">{exp.period}</span>
+                  <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
+                  <p class="text-sm text-text-muted mb-2">{exp.org}</p>
+                  <p class="text-sm text-text-secondary leading-relaxed mb-3">{exp.description}</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    {exp.tags.map((tag) => (
+                      <span class="px-2 py-0.5 text-xs bg-dark-elevated border border-border rounded text-text-muted">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {hasImg && (
+                    <div class="mt-4">
                       <img 
                         src={exp.photo} 
                         alt={exp.photoAlt || exp.org}
@@ -91,9 +126,10 @@ const hasPhoto = (entry: typeof experience[0]) => entry.photo && entry.photo.len
                         loading="lazy"
                       />
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
+              
             </div>
           );
         })}
