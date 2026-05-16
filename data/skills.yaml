@@ -1,0 +1,48 @@
+skills:
+  "Healthcare AI":
+    - Python
+    - PyTorch
+    - Computer Vision
+    - Medical Imaging
+    - NLP
+    - Scikit-learn
+
+  "AI & Agents":
+    - LangGraph
+    - LangChain
+    - OpenAI
+    - MCP
+    - RAG
+    - Docling
+    - Chroma
+
+  "Fullstack":
+    - React
+    - Next.js
+    - TypeScript
+    - Tailwind CSS
+    - Streamlit
+    - Reflex
+
+  "Backend":
+    - Node.js
+    - Go
+    - Python
+    - PostgreSQL
+    - MongoDB
+    - REST APIs
+
+  "Data & MLOps":
+    - Pandas
+    - NumPy
+    - Jupyter
+    - Docker
+    - GitHub Actions
+    - AWS
+
+  "Core":
+    - Git
+    - Linux
+    - System Design
+    - Strategic Planning
+    - Team Management

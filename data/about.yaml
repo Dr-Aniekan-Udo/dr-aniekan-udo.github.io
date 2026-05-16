@@ -1,0 +1,25 @@
+profile:
+  name: "Aniekan Udo"
+  title: "Medical Student & AI Software Engineer"
+  tagline: "Data · AI · Fullstack · MLOps · Healthcare Technology"
+  bio: |
+    Dual-degree candidate pursuing MB;BS (Medicine & Surgery) at 
+    University of Ibadan and BSc Computer Science at University of the People. 
+    Published researcher in medical AI (Glioma Segmentation, arxiv:2511.02928) with 
+    experience across 6+ technical programs including SPARK Academy, McKinsey 
+    Forward, and Aspire Institute. Building AI solutions that bridge healthcare 
+    and technology for Sub-Saharan Africa.
+  photo: "/profile.jpg"
+
+social:
+  github: "Dr-Aniekan-Udo"
+  linkedin: "aniekan-etim-udo"
+  twitter: "anigram3"
+  email: "aniekanetimudo+reachout@gmail.com"
+
+contact:
+  description: |
+    I'm open to full-time roles, contract work, collaborations, and consulting 
+    opportunities in software engineering, data, and AI.
+  emailButton: "Send an Email"
+  githubButton: "View GitHub"

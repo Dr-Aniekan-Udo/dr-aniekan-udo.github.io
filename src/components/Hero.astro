@@ -1,5 +1,7 @@
 ---
-const taglineWords = ["Data", "AI", "Fullstack", "MLOps", "Healthcare Technology"];
+import { profile } from '../data/content';
+
+const taglineWords = profile.tagline.split(' · ');
 ---
 
 <section class="min-h-screen flex items-center justify-center section-padding relative overflow-hidden">
@@ -17,13 +19,13 @@ const taglineWords = ["Data", "AI", "Fullstack", "MLOps", "Healthcare Technology
     
     <div class="reveal" style="transition-delay: 100ms;">
       <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-text-primary mb-6">
-        Aniekan Udo
+        {profile.name}
       </h1>
     </div>
     
     <div class="reveal" style="transition-delay: 200ms;">
       <p class="text-xl sm:text-2xl text-text-secondary mb-2">
-        Medical Student & AI Software Engineer
+        {profile.title}
       </p>
     </div>
     

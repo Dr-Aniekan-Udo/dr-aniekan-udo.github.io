@@ -1,0 +1,28 @@
+research:
+  # Option A: Auto-sync from repo (recommended)
+  - repo: "Dr-Aniekan-Udo/glioma-segmentation-paper"
+    autoSync: true
+    featured: true
+    priority: 1
+
+  # Option B: Manual entry (full control)
+  # - title: "Future Paper Title"
+  #   authors: "Author 1, Aniekan Udo, Author 3"
+  #   venue: "Conference Name"
+  #   arxiv: "xxxx.xxxxx"
+  #   abstract: "Paper abstract..."
+  #   methodology:
+  #     - "Step 1 description"
+  #     - "Step 2 description"
+  #   conclusion: "Results and conclusion..."
+  #   tags: ["Tag1", "Tag2"]
+  #   featured: true
+  #   priority: 2
+
+  # Option C: Repo with manual override
+  # - repo: "Dr-Aniekan-Udo/future-paper"
+  #   autoSync: true
+  #   featured: true
+  #   priority: 3
+  #   thumbnail: "/research/custom-thumb.jpg"
+  #   venue: "Override venue"

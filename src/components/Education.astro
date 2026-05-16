@@ -1,0 +1,47 @@
+---
+import { education } from '../data/content';
+---
+
+<section id="education" class="py-24 section-padding bg-dark-surface/30">
+  <div class="content-max">
+    <div class="reveal mb-12">
+      <p class="text-amber font-mono text-sm tracking-wider mb-2">Learning</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Education</h2>
+      <p class="text-text-secondary max-w-2xl">
+        Dual-degree candidate with certifications in AI, data analytics, and software engineering.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+      {education.map((edu) => (
+        <div class="bg-dark-surface border border-border rounded-xl p-6 hover:border-amber/30 transition-colors group">
+          <div class="flex items-start gap-4">
+            {edu.logo && (
+              <div class="w-16 h-16 bg-dark-elevated rounded-lg flex items-center justify-center flex-shrink-0 border border-border group-hover:border-amber/30 transition-colors">
+                <img 
+                  src={edu.logo} 
+                  alt={edu.school}
+                  class="w-12 h-12 object-contain"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="flex-1">
+              <span class="text-xs font-mono text-amber">{edu.period}</span>
+              <h3 class="text-lg font-semibold text-text-primary mt-1">{edu.degree}</h3>
+              <p class="text-sm text-text-muted">{edu.school}</p>
+              {edu.status && (
+                <span class="inline-block mt-2 px-2 py-0.5 text-xs bg-dark-elevated border border-border rounded text-text-muted">
+                  {edu.status}
+                </span>
+              )}
+            </div>
+          </div>
+          {edu.description && (
+            <p class="mt-4 text-sm text-text-secondary leading-relaxed">{edu.description}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

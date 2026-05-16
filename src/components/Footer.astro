@@ -1,4 +1,5 @@
 ---
+import { profile, contact, social } from '../data/content';
 ---
 
 <section id="contact" class="py-24 section-padding">
@@ -6,31 +7,30 @@
     <div class="reveal max-w-2xl mx-auto text-center">
       <p class="text-amber font-mono text-sm tracking-wider mb-2">Contact</p>
       <h2 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Let's Work Together</h2>
-      <p class="text-text-secondary mb-8">
-        I'm open to full-time roles, contract work, collaborations, and consulting 
-        opportunities in software engineering, data, and AI.
+      <p class="text-text-secondary mb-8 whitespace-pre-line">
+        {contact.description}
       </p>
       
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a 
-          href="mailto:aniekanetimudo+reachout@gmail.com"
+          href={`mailto:${social.email}`}
           class="w-full sm:w-auto px-8 py-3 bg-amber text-dark font-medium rounded-lg hover:bg-amber-hover transition-colors"
         >
-          Send an Email
+          {contact.emailButton}
         </a>
         <a 
-          href="https://github.com/Dr-Aniekan-Udo"
+          href={`https://github.com/${social.github}`}
           target="_blank"
           rel="noopener noreferrer"
           class="w-full sm:w-auto px-8 py-3 border border-border text-text-secondary rounded-lg hover:border-amber hover:text-amber transition-colors"
         >
-          View GitHub
+          {contact.githubButton}
         </a>
       </div>
       
       <div class="mt-12 flex items-center justify-center gap-6 text-text-muted">
         <a 
-          href="https://twitter.com/anigram3"
+          href={`https://twitter.com/${social.twitter}`}
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-amber transition-colors"
@@ -41,7 +41,7 @@
           </svg>
         </a>
         <a 
-          href="https://www.linkedin.com/in/aniekan-udo-762429208"
+          href={`https://www.linkedin.com/in/${social.linkedin}`}
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-amber transition-colors"
@@ -52,7 +52,7 @@
           </svg>
         </a>
         <a 
-          href="https://github.com/Dr-Aniekan-Udo"
+          href={`https://github.com/${social.github}`}
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-amber transition-colors"
@@ -70,7 +70,7 @@
 <footer class="py-8 border-t border-border">
   <div class="content-max section-padding">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-muted">
-      <p>© {new Date().getFullYear()} Aniekan Udo. All rights reserved.</p>
+      <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
       <p>Built with Astro, Tailwind CSS, and automated with GitHub Actions.</p>
     </div>
   </div>

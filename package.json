@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync": ".venv\\Scripts\\python.exe scripts/sync-projects.py"
+    "sync": ".venv\\Scripts\\python.exe scripts/sync-projects.py",
+    "sync:content": ".venv\\Scripts\\python.exe scripts/sync-content.py"
   },
   "dependencies": {
     "astro": "^5.0.0",

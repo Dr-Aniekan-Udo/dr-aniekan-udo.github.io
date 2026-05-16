@@ -1,4 +1,5 @@
 ---
+import { profile, social } from '../data/content';
 ---
 
 <section id="about" class="py-24 section-padding">
@@ -9,8 +10,8 @@
         <div class="relative">
           <div class="absolute -inset-1 bg-gradient-to-br from-amber/20 to-transparent rounded-2xl blur-lg"></div>
           <img 
-            src="/profile.jpg" 
-            alt="Aniekan Udo"
+            src={profile.photo} 
+            alt={profile.name}
             class="relative w-64 h-64 lg:w-80 lg:h-80 object-cover rounded-2xl border border-border shadow-2xl"
           />
         </div>
@@ -22,30 +23,13 @@
         <h2 class="text-3xl sm:text-4xl font-bold text-text-primary mb-6">
           Bridging Healthcare & Technology
         </h2>
-        <div class="space-y-4 text-text-secondary leading-relaxed">
-          <p>
-            I'm a dual-degree candidate pursuing <strong class="text-text-primary">MB;BS (Medicine & Surgery)</strong> at 
-            University of Ibadan and <strong class="text-text-primary">BSc Computer Science</strong> at University of the People. 
-            This unique combination allows me to understand healthcare problems from the inside and build 
-            technology solutions that actually work in clinical settings.
-          </p>
-          <p>
-            My journey in tech accelerated through <strong class="text-text-primary">6+ intensive programs</strong> in 2024 — 
-            from medical image AI at SPARK Academy (where I published research on Glioma segmentation) to 
-            leadership training at McKinsey Forward and Aspire Institute. Each experience deepened my 
-            commitment to using AI for healthcare in Sub-Saharan Africa.
-          </p>
-          <p>
-            Today, I build <strong class="text-text-primary">agentic AI systems, fullstack applications, and data pipelines</strong> — 
-            always with an eye toward real-world impact. Whether it's a LangGraph agent for analytics or a 
-            Go/React fullstack app for competition data analysis, I bring both technical depth and domain 
-            expertise in healthcare.
-          </p>
+        <div class="space-y-4 text-text-secondary leading-relaxed whitespace-pre-line">
+          {profile.bio}
         </div>
         
         <div class="mt-8 flex flex-wrap gap-4">
           <a 
-            href="https://github.com/Dr-Aniekan-Udo"
+            href={`https://github.com/${social.github}`}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-5 py-2.5 bg-dark-elevated border border-border rounded-lg text-text-secondary hover:border-amber hover:text-amber transition-colors"
@@ -56,7 +40,7 @@
             GitHub
           </a>
           <a 
-            href="https://www.linkedin.com/in/aniekan-etim-udo"
+            href={`https://www.linkedin.com/in/${social.linkedin}`}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-5 py-2.5 bg-dark-elevated border border-border rounded-lg text-text-secondary hover:border-amber hover:text-amber transition-colors"

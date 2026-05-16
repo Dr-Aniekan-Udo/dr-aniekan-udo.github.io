@@ -1,0 +1,32 @@
+education:
+  - degree: "Bachelor of Computer Science"
+    school: "University of the People"
+    period: "Sep 2025 – Present"
+    logo: "/education/uopeople-logo.png"
+    priority: 1
+
+  - degree: "Bachelor of Medicine and Bachelor of Surgery (MB;BS)"
+    school: "University of Ibadan"
+    period: "Apr 2018 – Present"
+    logo: "/education/ui-logo.png"
+    priority: 2
+
+  - degree: "AI Engineering Certificate"
+    school: "SPARK Academy"
+    period: "Jan 2025 – Aug 2025"
+    logo: "/education/spark-academy-logo.png"
+    priority: 3
+
+  - degree: "Software Engineering Program"
+    school: "ALX Africa"
+    period: "Jun 2022 – Dec 2023"
+    status: "Incomplete"
+    description: "Intensive full-stack software engineering program. Learned Linux, Bash, C Programming, Python, test-driven development, and professional engineering skills. Program discontinued by ALX. Slogan: 'Do Hard Things'"
+    logo: "/education/alx-logo.png"
+    priority: 4
+
+  - degree: "Google Data Analyst Certificate"
+    school: "Coursera"
+    period: "Feb 2024"
+    logo: "/education/coursera-logo.png"
+    priority: 5
