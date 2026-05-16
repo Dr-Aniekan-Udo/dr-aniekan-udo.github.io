@@ -2,9 +2,14 @@
 
 ## Project Overview
 
-This is the automated portfolio site for **Aniekan Udo**, a software engineer specializing in Data, AI, Fullstack, MLOps, and Automation. The site is built with Astro, styled with Tailwind CSS, and deployed to GitHub Pages via GitHub Actions.
+This is the automated portfolio site for **Aniekan Udo**, a Medical Student & AI Software Engineer specializing in Data, AI, Fullstack, MLOps, and Healthcare Technology. The site is built with Astro, styled with Tailwind CSS, and deployed to GitHub Pages via GitHub Actions.
 
 **Key feature:** Projects are automatically synced from GitHub repos listed in `projects.yaml`. The CI pipeline fetches READMEs, thumbnails, and metadata at build time.
+
+**Additional sections:**
+- **Experience Timeline** — Professional journey (6+ programs)
+- **Research** — Featured arxiv publication (Glioma Segmentation)
+- **Education** — Dual degrees (MB;BS + BSc CS) + certifications
 
 ## Tech Stack
 
@@ -27,24 +32,34 @@ This is the automated portfolio site for **Aniekan Udo**, a software engineer sp
 ├── scripts/
 │   ├── sync-projects.py                    # Fetches repo data from GitHub
 │   └── requirements.txt                    # Python dependencies (pyyaml)
+├── github-profile-readme/                  # GitHub profile README assets
+│   ├── README.md                           # Profile README code
+│   ├── banner.svg                          # Animated header banner
+│   └── INSTRUCTIONS.md                     # Setup instructions
 ├── projects.yaml                           # Single source of truth for showcased repos
 ├── src/
 │   ├── content/config.ts                   # Astro content collections schema
 │   ├── content/projects/                   # Generated at build time (*.md)
 │   ├── components/                         # Astro UI components
-│   ├── layouts/BaseLayout.astro            # Root HTML shell + animations
+│   │   ├── Hero.astro                      # Landing hero section
+│   │   ├── About.astro                     # Bio with photo
+│   │   ├── Skills.astro                    # Tech stack grid
+│   │   ├── Experience.astro                # Timeline + education
+│   │   ├── Research.astro                  # Featured publication
+│   │   ├── ProjectCard.astro               # Individual project card
+│   │   ├── ProjectGrid.astro               # Filterable project grid
+│   │   ├── Navigation.astro                # Fixed navbar
+│   │   └── Footer.astro                    # Contact + footer
+│   ├── layouts/BaseLayout.astro            # Root HTML shell
 │   ├── pages/
-│   │   ├── index.astro                     # Landing page
+│   │   ├── index.astro                     # Landing page (all sections)
 │   │   └── projects/[slug].astro           # Dynamic project detail pages
 │   └── styles/global.css                   # Tailwind directives + custom utilities
 ├── public/
 │   ├── profile.jpg                         # Author headshot
 │   ├── default-thumbnail.svg               # Fallback for repos without images
 │   └── projects/                           # Downloaded repo thumbnails
-├── astro.config.mjs
-├── tailwind.config.mjs
-├── package.json
-└── tsconfig.json
+└── astro.config.mjs                        # Astro config (static output)
 ```
 
 ## Development Workflow
@@ -122,6 +137,13 @@ Use one of these categories for consistency:
 - `MLOps & Tools`
 - `Machine Learning`
 - `Data Science`
+
+### Updating Content Sections
+
+**Experience, Research, About, Skills** are hardcoded in Astro components (not generated from YAML). To update:
+1. Edit the relevant `.astro` file in `src/components/`
+2. Update content directly in the component
+3. Push to `main`
 
 ## Design System
 
@@ -205,4 +227,4 @@ npm run sync
 
 ## Contact
 
-Maintained by Aniekan Udo. For issues, open a GitHub issue or email aniekanetimudo@gmail.com.
+Maintained by Aniekan Udo. For issues, open a GitHub issue or email aniekanetimudo+reachout@gmail.com.

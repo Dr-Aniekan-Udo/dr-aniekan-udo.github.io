@@ -1,19 +1,20 @@
 profile:
   name: "Aniekan Udo"
-  title: "Software Engineer"
-  tagline: "Data · AI · Fullstack · MLOps · Automation"
+  title: "Medical Student & AI Software Engineer"
+  tagline: "Data · AI · Fullstack · MLOps · Healthcare Technology"
   bio: |
-    I'm a software engineer with a unique background in medicine, now building 
-    data-driven systems, AI applications, and scalable fullstack solutions. 
-    Currently training at ALX/Holberton, I specialize in turning complex data 
-    into production-grade software — from machine learning pipelines to 
-    agentic AI systems and fullstack web applications.
+    Dual-degree candidate pursuing MB;BS (Medicine & Surgery) at University of 
+    Ibadan and BSc Computer Science at University of the People. Published 
+    researcher in medical AI (Glioma Segmentation, arxiv:2511.02928) with 
+    experience across 6+ technical programs including SPARK Academy, McKinsey 
+    Forward, and Aspire Institute. Building AI solutions that bridge healthcare 
+    and technology for Sub-Saharan Africa.
 
 social:
   github: "Dr-Aniekan-Udo"
-  linkedin: "aniekan-udo-762429208"
+  linkedin: "aniekan-etim-udo"
   twitter: "anigram3"
-  email: "aniekanetimudo@gmail.com"
+  email: "aniekanetimudo+reachout@gmail.com"
 
 projects:
   # Fullstack & Engineering

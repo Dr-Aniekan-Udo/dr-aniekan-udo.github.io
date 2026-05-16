@@ -1,0 +1,134 @@
+---
+const experiences = [
+  {
+    role: "Medical Image AI Engineer",
+    org: "SPARK Academy by CAMERA MRI Africa",
+    period: "Jan 2024 – Sep 2024",
+    description: "Led team to develop Glioma segmentation solution for low-resource settings. Published research on domain adaptive transformers for data-efficient medical image segmentation in Sub-Saharan MRI.",
+    tags: ["PyTorch", "Computer Vision", "Medical AI", "Research"],
+    featured: true,
+  },
+  {
+    role: "AI & Machine Learning Engineer Intern",
+    org: "Highland College of Technology",
+    period: "May 2024 – Nov 2024",
+    description: "Designed plant recognition AI model using computer vision for crop distribution analysis. Built and deployed models addressing economic growth and sustainability in Sub-Saharan Africa.",
+    tags: ["Python", "Image Processing", "3MTT Program"],
+    featured: true,
+  },
+  {
+    role: "Data Scientist Intern",
+    org: "Skilharvest",
+    period: "Jan 2024 – May 2024",
+    description: "Led multi-functional data team to build loan defaulter, car price, and cancer prediction models. Designed handwritten text recognition using MNIST dataset.",
+    tags: ["Pandas", "Scikit-learn", "Deep Learning"],
+    featured: false,
+  },
+  {
+    role: "Green Skill Trainee",
+    org: "INCO Academy (LinkedIn & Microsoft backed)",
+    period: "Mar 2024 – May 2024",
+    description: "Researched AI-powered healthcare solutions to reduce carbon emissions in health facilities. Proposed sustainable telemedicine chatbot to improve patient-doctor interaction.",
+    tags: ["Sustainability", "Healthcare AI", "Green Tech"],
+    featured: false,
+  },
+  {
+    role: "Aspire Leadership Candidate",
+    org: "Aspire Institute (Harvard Business School faculty)",
+    period: "Sep 2024 – Nov 2024",
+    description: "Developed leadership, critical thinking, and problem-solving skills. Focused on driving social impact in low-income communities through technology.",
+    tags: ["Leadership", "Social Impact"],
+    featured: false,
+  },
+  {
+    role: "McKinsey Forward Program Candidate",
+    org: "McKinsey & Company",
+    period: "May 2024 – Jul 2024",
+    description: "Learned hypothesis-driven problem solving, communication mastery, and interpersonal skills. Focused on driving economic growth in low-income countries.",
+    tags: ["Strategy", "Problem Solving"],
+    featured: false,
+  },
+];
+
+const education = [
+  {
+    degree: "Bachelor of Computer Science",
+    school: "University of the People",
+    period: "Sep 2025 – Present",
+  },
+  {
+    degree: "Bachelor of Medicine and Bachelor of Surgery (MB;BS)",
+    school: "University of Ibadan",
+    period: "Apr 2018 – Present",
+  },
+  {
+    degree: "AI Engineering Certificate",
+    school: "SPARK Academy",
+    period: "Jan 2025 – Aug 2025",
+  },
+  {
+    degree: "Google Data Analyst Certificate",
+    school: "Coursera",
+    period: "Feb 2024",
+  },
+];
+---
+
+<section id="experience" class="py-24 section-padding">
+  <div class="content-max">
+    <div class="reveal mb-12">
+      <p class="text-amber font-mono text-sm tracking-wider mb-2">Journey</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">Experience & Education</h2>
+      <p class="text-text-secondary max-w-2xl">
+        From medical school to AI engineering — a journey of bridging healthcare and technology 
+        through hands-on programs and published research.
+      </p>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div class="mb-16">
+      <h3 class="text-xl font-semibold text-text-primary mb-8">Professional Experience</h3>
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px"></div>
+        
+        {experiences.map((exp, i) => (
+          <div class={`reveal relative mb-8 md:mb-12 ${i % 2 === 0 ? 'md:pr-[50%]' : 'md:pl-[50%]'}`} style={`transition-delay: ${i * 100}ms;`}>
+            <div class={`relative ${i % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
+              <!-- Timeline dot -->
+              <div class={`absolute top-2 w-3 h-3 rounded-full border-2 ${exp.featured ? 'bg-amber border-amber' : 'bg-dark border-border'} ${i % 2 === 0 ? 'md:right-0 md:translate-x-1.5' : 'md:left-0 md:-translate-x-1.5'} left-0 -translate-x-1.5 md:translate-x-0`}></div>
+              
+              <div class="pl-6 md:pl-0">
+                <span class="text-xs font-mono text-amber">{exp.period}</span>
+                <h4 class="text-lg font-semibold text-text-primary mt-1">{exp.role}</h4>
+                <p class="text-sm text-text-muted mb-2">{exp.org}</p>
+                <p class="text-sm text-text-secondary leading-relaxed mb-3">{exp.description}</p>
+                <div class="flex flex-wrap gap-1.5">
+                  {exp.tags.map((tag) => (
+                    <span class="px-2 py-0.5 text-xs bg-dark-elevated border border-border rounded text-text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div>
+      <h3 class="text-xl font-semibold text-text-primary mb-8">Education</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children">
+        {education.map((edu) => (
+          <div class="bg-dark-surface border border-border rounded-xl p-5 hover:border-amber/30 transition-colors">
+            <span class="text-xs font-mono text-amber">{edu.period}</span>
+            <h4 class="text-base font-semibold text-text-primary mt-1">{edu.degree}</h4>
+            <p class="text-sm text-text-muted">{edu.school}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
