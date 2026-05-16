@@ -15,5 +15,19 @@ pnpm-debug.log*
 cv_extracted.txt
 github-profile-before.png
 
+# Debug screenshots from development
+*-check.png
+*-fixed.png
+*-visible.png
+*-view.png
+*-final.png
+*-mid.png
+*-now.png
+*-section*.png
+*-snapshot.yml
+live-*.png
+live-*.yml
+preview-*.png
+
 # GitHub profile README assets (managed in separate repo)
 /github-profile-readme
