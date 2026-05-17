@@ -329,6 +329,60 @@ If none found → `default-thumbnail.svg`
 3. Generates placeholder SVGs for missing photos/logos
 4. Outputs `src/data/content.ts` — typed TypeScript data for components
 
+## Agent Workflow: Repo Analysis with gitingest
+
+When improving project READMEs or analyzing repositories, **always use gitingest** for comprehensive codebase understanding before making changes.
+
+### Why gitingest?
+
+- Extracts full repository structure, file contents, and dependencies
+- Provides complete context for accurate README generation
+- Reveals architecture, features, and tech stack automatically
+- Much more reliable than manual browsing or GitHub API alone
+
+### Installation
+
+```bash
+# gitingest is already installed in .venv
+uv pip install gitingest
+```
+
+### Usage
+
+```python
+from gitingest import ingest
+
+# Analyze any public repo
+summary, tree, content = ingest('https://github.com/username/repo-name')
+
+# Save for analysis
+with open('repo_digest.txt', 'w', encoding='utf-8') as f:
+    f.write(f'Summary: {summary}\n\nTree:\n{tree}\n\nContent:\n{content[:50000]}')
+```
+
+### Agent Workflow
+
+1. **Ingest** the target repo using gitingest
+2. **Analyze** the output to understand:
+   - Project structure and architecture
+   - Key features and capabilities
+   - Tech stack and dependencies
+   - Code organization patterns
+3. **Generate** improved README following `PROJECT_README_TEMPLATE.md`
+4. **Preserve** all embedded images and screenshots
+5. **Clean up** all temporary digest files before committing:
+   ```bash
+   # Remove all gitingest output files
+   Remove-Item -Path "*digest*","*gitingest*","*.tmp" -ErrorAction SilentlyContinue
+   ```
+
+### Important Rules
+
+- **Never commit** gitingest output files (`*digest*`, `*.tmp`, temp `.txt` files)
+- Always clean up temporary files after analysis is complete
+- Use the full content output for comprehensive understanding
+- Cross-reference with existing README to preserve embedded images
+
 ## Design System
 
 ### Colors

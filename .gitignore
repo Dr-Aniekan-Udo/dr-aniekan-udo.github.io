@@ -31,3 +31,6 @@ preview-*.png
 
 # GitHub profile README assets (managed in separate repo)
 /github-profile-readme
+
+# Local task tracking
+TASK.md

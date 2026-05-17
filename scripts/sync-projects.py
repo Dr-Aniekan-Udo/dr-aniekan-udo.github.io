@@ -70,6 +70,71 @@ def fetch_text(url: str) -> str:
         return ""
 
 
+def parse_readme_field(readme: str, field_name: str) -> str | None:
+    """Extract a structured field from README using **Field:** pattern."""
+    pattern = rf'\*\*{re.escape(field_name)}:\*\*\s*(.+)'
+    match = re.search(pattern, readme, re.IGNORECASE)
+    if match:
+        return match.group(1).strip()
+    return None
+
+
+def parse_tech_stack(readme: str) -> list[str]:
+    """Extract tech stack as list from **Tech Stack:** field."""
+    value = parse_readme_field(readme, "Tech Stack")
+    if value:
+        # Split by comma, and, or pipe
+        techs = re.split(r'[,|]|\band\b', value)
+        return [t.strip() for t in techs if t.strip()]
+    return []
+
+
+def parse_status(readme: str) -> str:
+    """Extract status from **Status:** field."""
+    value = parse_readme_field(readme, "Status")
+    if value:
+        valid = ["Active", "Complete", "Archived"]
+        for v in valid:
+            if v.lower() in value.lower():
+                return v
+    return "Unknown"
+
+
+def parse_overview(readme: str, max_length: int = 300) -> str:
+    """Extract overview from ## Overview section, fallback to first paragraph."""
+    # Try ## Overview section first
+    overview_match = re.search(
+        r'##\s*Overview\s*\n+(.+?)(?=\n##|\Z)',
+        readme, re.DOTALL | re.IGNORECASE
+    )
+    if overview_match:
+        text = overview_match.group(1).strip()
+        # Take first paragraph
+        first_para = text.split('\n\n')[0] if '\n\n' in text else text.split('\n')[0]
+        first_para = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', first_para)
+        first_para = first_para.replace('"', "'")
+        if len(first_para) > max_length:
+            first_para = first_para[:max_length].rsplit(' ', 1)[0] + '...'
+        return first_para
+    
+    # Fallback to old behavior
+    return extract_excerpt(readme, max_length)
+
+
+def parse_features(readme: str) -> list[str]:
+    """Extract features from ## Features section."""
+    features_match = re.search(
+        r'##\s*Features\s*\n+(.+?)(?=\n##|\Z)',
+        readme, re.DOTALL | re.IGNORECASE
+    )
+    if features_match:
+        text = features_match.group(1)
+        # Extract bullet points
+        bullets = re.findall(r'^\s*[-*]\s+(.+)$', text, re.MULTILINE)
+        return [b.strip() for b in bullets if b.strip()][:10]  # Max 10 features
+    return []
+
+
 def extract_excerpt(readme: str, max_length: int = 300) -> str:
     """Extract first meaningful paragraph from README."""
     # Remove HTML comments
@@ -192,11 +257,38 @@ def sync_projects():
             readme_url = f"{GITHUB_RAW_BASE}/{repo_full}/master/README.md"
             readme = fetch_text(readme_url)
         
-        # Extract excerpt
-        excerpt = extract_excerpt(readme) if readme else "No README available."
+        # Parse structured fields from README
+        readme_category = parse_readme_field(readme, "Category") if readme else None
+        tech_stack = parse_tech_stack(readme) if readme else []
+        status = parse_status(readme) if readme else "Unknown"
+        live_demo = parse_readme_field(readme, "Live Demo") if readme else None
+        readme_thumbnail = parse_readme_field(readme, "Thumbnail") if readme else None
+        
+        # Extract overview/excerpt (prefers ## Overview section)
+        excerpt = parse_overview(readme) if readme else "No README available."
         
         # Try to find thumbnail
-        thumbnail = find_thumbnail(owner, repo)
+        thumbnail = None
+        # First check if README specifies a thumbnail path
+        if readme_thumbnail:
+            thumb_url = f"{GITHUB_RAW_BASE}/{owner}/{repo}/main/{readme_thumbnail.lstrip('./')}"
+            try:
+                req = urllib.request.Request(thumb_url, method='HEAD')
+                with urllib.request.urlopen(req, timeout=5) as resp:
+                    if resp.status == 200:
+                        ext = Path(readme_thumbnail).suffix
+                        local_name = f"{owner}_{repo}{ext}"
+                        local_path = PUBLIC_PROJECTS_DIR / local_name
+                        urllib.request.urlretrieve(thumb_url, str(local_path))
+                        log(f"Downloaded README-specified thumbnail: {local_name}")
+                        thumbnail = f"/projects/{local_name}"
+            except Exception:
+                pass
+        
+        # Fallback to path discovery
+        if not thumbnail:
+            thumbnail = find_thumbnail(owner, repo)
+        
         if not thumbnail:
             thumbnail = PLACEHOLDER_IMAGE
             log(f"Using placeholder for {repo}")
@@ -205,7 +297,7 @@ def sync_projects():
         frontmatter = {
             "title": meta.get("name", repo).replace("-", " ").replace("_", " ").title(),
             "repo": repo_full,
-            "category": proj.get("category", "Uncategorized"),
+            "category": readme_category or proj.get("category", "Uncategorized"),
             "description": meta.get("description", excerpt),
             "excerpt": excerpt,
             "thumbnail": thumbnail,
@@ -215,6 +307,10 @@ def sync_projects():
             "featured": proj.get("featured", False),
             "priority": proj.get("priority", 99),
             "tags": meta.get("topics", []),
+            "techStack": tech_stack,
+            "status": status,
+            "liveDemo": live_demo,
+            "features": parse_features(readme) if readme else [],
         }
         
         # Generate markdown file
