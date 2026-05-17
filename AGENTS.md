@@ -163,6 +163,34 @@ Push to `main`. GitHub Actions will:
 3. Build the Astro site
 4. Deploy to GitHub Pages
 
+### CI/CD Schedule
+
+The site rebuilds automatically on:
+- **Every push to `main`** — immediate deployment
+- **Monthly** — 1st of every month at midnight UTC (fetches latest repo data)
+- **Manual trigger** — run anytime via GitHub UI, CLI, or API
+
+#### Manual Build Trigger
+
+**Via GitHub UI:**
+1. Go to repository → Actions tab
+2. Select "Build and Deploy" workflow
+3. Click "Run workflow" → "Run workflow"
+
+**Via GitHub CLI:**
+```bash
+gh workflow run build-and-deploy.yml
+```
+
+**Via API (requires token):**
+```bash
+curl -X POST \
+  -H "Authorization: token YOUR_GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/Dr-Aniekan-Udo/dr-aniekan-udo.github.io/actions/workflows/build-and-deploy.yml/dispatches \
+  -d '{"ref":"main"}'
+```
+
 ### Research Papers
 
 **Option A: Auto-sync from repo (recommended)**

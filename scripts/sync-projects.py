@@ -187,7 +187,7 @@ def yaml_string(value: str) -> str:
     # If contains special chars, use literal block
     if '"' in value or ':' in value or '\n' in value or value.startswith(' ') or value.endswith(' '):
         # Escape double quotes
-        safe = value.replace('"', "\\'")
+        safe = value.replace('"', '\\"')
         return f'"{safe}"'
     return f'"{value}"'
 
