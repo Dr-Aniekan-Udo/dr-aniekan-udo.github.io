@@ -453,6 +453,7 @@ npm run sync:research
 - Check `projects.yaml` and `data/*.yaml` syntax is valid
 - Ensure repos in whitelist are public
 - Verify `GITHUB_TOKEN` has sufficient permissions (read repos)
+- Verify CI runs all 3 sync scripts before build: `sync-content.py`, `sync-research.py`, `sync-projects.py`
 
 ### Thumbnails not appearing
 

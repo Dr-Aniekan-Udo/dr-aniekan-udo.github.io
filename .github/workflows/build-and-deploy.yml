@@ -40,6 +40,14 @@ jobs:
           uv venv .venv --python 3.12
           uv pip install -r scripts/requirements.txt --python .venv/bin/python
 
+      - name: Sync content from YAML configs
+        run: .venv/bin/python scripts/sync-content.py
+
+      - name: Sync research papers from GitHub
+        run: .venv/bin/python scripts/sync-research.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Sync projects from GitHub
         run: .venv/bin/python scripts/sync-projects.py
         env:
