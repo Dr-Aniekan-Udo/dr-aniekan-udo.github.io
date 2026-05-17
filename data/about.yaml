@@ -3,12 +3,14 @@ profile:
   title: "Medical Student & AI Software Engineer"
   tagline: "Data · AI · Fullstack · MLOps · Healthcare Technology"
   bio: |
-    Dual-degree candidate pursuing MB;BS (Medicine & Surgery) at 
-    University of Ibadan and BSc Computer Science at University of the People. 
-    Published researcher in medical AI (Glioma Segmentation, arxiv:2511.02928) with 
-    experience across 6+ technical programs including SPARK Academy, McKinsey 
-    Forward, and Aspire Institute. Building AI solutions that bridge healthcare 
-    and technology for Sub-Saharan Africa.
+    Dual-degree candidate pursuing MB;BS (Medicine & Surgery) at University of 
+    Ibadan and BSc Computer Science at University of the People.
+    Published researcher in medical AI (Cancer segmentation: Glioma Segmentation 
+    — arxiv:2511.02928, disease prediction), Healthcare (cardiology, reproductive 
+    health), with experience across 6+ technical programs including SPARK Academy, 
+    McKinsey Forward, and Aspire Institute. Building AI solutions that bridge 
+    healthcare and technology for Sub-Saharan Africa. My work focuses on Medical 
+    research, Finance, Artificial intelligence and Computer systems.
   photo: "/profile.jpg"
 
 social:
