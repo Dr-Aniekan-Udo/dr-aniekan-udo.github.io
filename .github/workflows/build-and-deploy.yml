@@ -35,19 +35,21 @@ jobs:
         with:
           version: 'latest'
 
-      - name: Install Python dependencies with uv
-        run: uv pip install -r scripts/requirements.txt
+      - name: Create Python venv and install deps
+        run: |
+          uv venv .venv --python 3.12
+          uv pip install -r scripts/requirements.txt --python .venv/bin/python
 
       - name: Sync content from YAML configs
-        run: uv run scripts/sync-content.py
+        run: uv run --python .venv/bin/python scripts/sync-content.py
 
       - name: Sync research papers from GitHub
-        run: uv run scripts/sync-research.py
+        run: uv run --python .venv/bin/python scripts/sync-research.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Sync projects from GitHub
-        run: uv run scripts/sync-projects.py
+        run: uv run --python .venv/bin/python scripts/sync-projects.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
